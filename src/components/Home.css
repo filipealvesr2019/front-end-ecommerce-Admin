@@ -95,3 +95,7 @@
 }
 
 /* Add more styles as needed */
+.colomn{
+  display: flex;
+  flex-direction: column;
+}

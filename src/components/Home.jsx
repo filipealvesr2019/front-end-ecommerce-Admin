@@ -69,9 +69,10 @@ const Home = () => {
       ) : (
         <Fragment>
           <MetaData title={"Melhores variedades de Roupas"}></MetaData>
-          <section>
-            <Link to={"dashboard"} className="Dashboard">dasboard</Link>
-         
+          <section className="colomn">
+            <Link to={"/dashboard"} className="Dashboard">dasboard</Link>
+            <Link to={"/cart"} className="Dashboard">cart</Link>
+
           </section>
           <div className="row">
             <div className="colPrice">

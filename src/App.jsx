@@ -11,6 +11,7 @@ import Profile from "./components/user/Profile";
 import store from "./store/store";
 import Dashboard from "./Dashboard/Dashboard";
 import Sidebar from "./Sidebar/Sidebar";
+import ShoppingCart from "./cart/ShoppingCart";
 
 function App() {
   useEffect(() => {
@@ -27,6 +28,9 @@ function App() {
               <Route path="/" element={<Home />} />       
               <Route path="/sidebar" element={<Sidebar />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/cart" element={<ShoppingCart />} />
+
+              
               <Route path="/search/*" element={<Home key="search" />} />
               <Route path="/product/:id" element={<ProductDetails />} />
               <Route path="/login" element={<Login />} />
