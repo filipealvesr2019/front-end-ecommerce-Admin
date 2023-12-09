@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { productDetails } from '../../actions/productActions';
 import Loader from '../Layout/Loader';
 import MetaData from '../Layout/MetaData';
-const ProductDetails = ({match ,}) => {
+const ProductDetails = ({match}) => {
     const dispatch = useDispatch();
 
 

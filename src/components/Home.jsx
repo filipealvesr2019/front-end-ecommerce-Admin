@@ -72,7 +72,7 @@ const Home = () => {
           <section className="colomn">
             <Link to={"/dashboard"} className="Dashboard">dasboard</Link>
             <Link to={"/cart"} className="Dashboard">cart</Link>
-
+            <Link to={"/ProductDetailsCopy"} className="Dashboard">ProductDetailsCopy</Link>
           </section>
           <div className="row">
             <div className="colPrice">
