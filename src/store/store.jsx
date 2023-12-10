@@ -3,16 +3,30 @@ import thunk from "redux-thunk";
 import { productReducer, productDetailsReducer } from "../reducers/productsReducer";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { authReducer } from "../reducers/userReducers";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
+const persistConfig = {
+  key: 'root',
+  version: 1,
+  storage,
+}
 
 const middleware = [thunk];
 
-// Load state from localStorage if available
-const preloadedState = localStorage.getItem("reduxState")
-  ? JSON.parse(localStorage.getItem("reduxState"))
-  : {};
+const preloadedState = {};
 
 const composeEnhancers = composeWithDevTools({
-  // Specify name here, actionsBlacklist, actionsCreators, and other options if needed
+  // Specify name here, actionsBlacklist, actionsCreators and other options if needed
 });
 
 const rootReducer = combineReducers({
@@ -21,16 +35,17 @@ const rootReducer = combineReducers({
   userAuth: authReducer,
 });
 
-const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(...middleware),
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }).concat(...middleware),
   devTools: { trace: true, traceLimit: 25 },
   preloadedState,
 });
 
-// Save state to localStorage whenever the state changes
-store.subscribe(() => {
-  localStorage.setItem("reduxState", JSON.stringify(store.getState()));
-});
-
-export default store;
+export const persistor = persistStore(store);

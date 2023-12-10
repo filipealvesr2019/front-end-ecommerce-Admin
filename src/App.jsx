@@ -8,7 +8,7 @@ import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import { loadUser } from "./actions/userActions";
 import Profile from "./components/user/Profile";
-import store from "./store/store";
+import {store} from "./store/store";
 import Dashboard from "./Dashboard/Dashboard";
 import Sidebar from "./Sidebar/Sidebar";
 import ShoppingCart from "./cart/ShoppingCart";
